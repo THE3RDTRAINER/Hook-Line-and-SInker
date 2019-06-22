@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.25
-  FPCamera: {fileID: 1095183978}
+  FPCamera: {fileID: 1937374561}
 --- !u!4 &1937374561
 Transform:
   m_ObjectHideFlags: 0
