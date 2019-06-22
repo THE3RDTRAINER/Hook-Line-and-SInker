@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     [SerializeField] float speed = .5f;
-    [SerializeField] Transform FPCamera;
+
 
     //void Rotate(float, float, float, Space);
 
@@ -21,14 +21,15 @@ public class FirstPersonController : MonoBehaviour
        
         Movement();
         CameraMovement();
-
+        
+        
     }
 
     //Controls the movement of the first person character. 
     void Movement()
     {
         var pos = transform.position;
-
+        Vector3 jumptransform = new Vector3 (pos.x, pos.y + 5, pos.z);
         if (Input.GetButton("Horizontal")&& Input.GetAxis("Horizontal")>0)
         {
             transform.position = new Vector3(pos.x + 1*speed, pos.y, pos.z);
@@ -47,17 +48,33 @@ public class FirstPersonController : MonoBehaviour
             transform.position = new Vector3(pos.x, pos.y , pos.z - 1 * speed);
         }
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Jumping");
+            transform.position += new Vector3(0f,5f,0f);
+         
+            //Debug.Log("Falling");
+            //transform.position += new Vector3(0f, -5f, 0f) ;
+        }
+        
     }
 
     void CameraMovement()
     {
         float horizontalfov = Input.GetAxis("Mouse X");
         Space relativeTo;
-        float verticalfov = Input.GetAxis("Mouse Y");
+        float verticalfov = -(Input.GetAxis("Mouse Y"));
 
 
         // Vector3 eulers = (transform.rotation.x , transform.rotation.y, transform.rotation.z);
-        transform.Rotate(transform.rotation.x+ verticalfov,transform.rotation.y + horizontalfov,0f, relativeTo = Space.World);
+        if (Input.GetAxis("Mouse X")!=0)
+        {
+            transform.Rotate(transform.rotation.x/*+ verticalfov*/, transform.rotation.y + horizontalfov, 0f, relativeTo = Space.World);
+        }
+        if (Input.GetAxis("Mouse Y")!=0)
+        {
+            transform.Rotate(transform.rotation.x+ verticalfov, transform.rotation.y /*+ horizontalfov*/, 0f, relativeTo = Space.World);
+        }
 
 
         //if (Input.GetButton("Mouse X")&& Input.GetAxis("Mouse X") < 0)
@@ -69,6 +86,8 @@ public class FirstPersonController : MonoBehaviour
         //transform.rotation = Quaternion.Slerp(transform.rotation, FPCamera.rotation, .5f);
 
     }
+
+
 }
 
 
