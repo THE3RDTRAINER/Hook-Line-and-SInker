@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     [SerializeField] float speed = .5f;
-
+    [SerializeField] Transform FPCamera;
 
     //void Rotate(float, float, float, Space);
 
@@ -61,21 +61,27 @@ public class FirstPersonController : MonoBehaviour
 
     void CameraMovement()
     {
+        //float horizontalSpeed = 2.0f;
+        //float verticalSpeed = 2.0f;
+        //float h = horizontalSpeed * Input.GetAxis("Mouse X");
+        //float v = verticalSpeed * Input.GetAxis("Mouse Y");
+
+        //transform.Rotate(v, h, 0);
+
         float horizontalfov = Input.GetAxis("Mouse X");
         Space relativeTo;
         float verticalfov = -(Input.GetAxis("Mouse Y"));
 
 
         // Vector3 eulers = (transform.rotation.x , transform.rotation.y, transform.rotation.z);
-        if (Input.GetAxis("Mouse X")!=0)
+        if (Input.GetAxis("Mouse X") != 0)
         {
-            transform.Rotate(transform.rotation.x/*+ verticalfov*/, transform.rotation.y + horizontalfov, 0f, relativeTo = Space.World);
+            transform.Rotate(0f, horizontalfov, 0f, relativeTo = Space.World);
         }
-        if (Input.GetAxis("Mouse Y")!=0)
+        if (Input.GetAxis("Mouse Y") != 0)
         {
-            transform.Rotate(transform.rotation.x+ verticalfov, transform.rotation.y /*+ horizontalfov*/, 0f, relativeTo = Space.World);
+            FPCamera.Rotate(verticalfov, 0f, 0f, relativeTo = Space.World);
         }
-
 
         //if (Input.GetButton("Mouse X")&& Input.GetAxis("Mouse X") < 0)
         //{
