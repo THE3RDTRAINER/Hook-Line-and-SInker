@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8520461599823398173}
   - component: {fileID: 3397159586289480790}
   - component: {fileID: 1347542801002851375}
+  - component: {fileID: 7321763093886260938}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2363135623937473333}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5677b91d44cb75e4394717be12945ed0, type: 3}
   m_Name: 
@@ -77,6 +78,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7321763093886260938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2363135623937473333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad6727a2159bb5499640247df0f4556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3397159586289480790}
+  FPCamera: {fileID: 2363135622866266086}
+  jumpHeight: 5
 --- !u!1 &3701607244965685332
 GameObject:
   m_ObjectHideFlags: 0
