@@ -9,7 +9,7 @@ public class FirstPersonControllerPhysics : MonoBehaviour
     [SerializeField] Rigidbody player;
     [SerializeField] Transform FPCamera;
     [SerializeField] float jumpHeight=5f;
-    [SerializeField] float speed = .5f;
+    [SerializeField] float speed = .10f;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public class FirstPersonControllerPhysics : MonoBehaviour
         {
             Debug.Log("I am jumping");
             player.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
-            player.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
+            //player.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
         }
     }
 
