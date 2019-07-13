@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonUp("Fire1") || Input.GetKeyUp(ShootRope))
         {
+            Debug.Log("FIRE");
             if(connectedObject == null)
             {
                 Grapple(Camera.position, Camera.forward, 20f, LayersToCollideWith);

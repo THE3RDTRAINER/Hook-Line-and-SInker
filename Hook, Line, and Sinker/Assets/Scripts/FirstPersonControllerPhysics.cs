@@ -11,6 +11,8 @@ public class FirstPersonControllerPhysics : MonoBehaviour
     [SerializeField] float jumpHeight=5f;
     [SerializeField] float speed = .10f;
 
+    [SerializeField] Transform PlayerTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,7 @@ public class FirstPersonControllerPhysics : MonoBehaviour
         if (Input.GetAxis("Mouse X") != 0)
         {
             FPCamera.Rotate(0f, horizontalfov, 0f, relativeTo = Space.World);
+            PlayerTransform.Rotate(0f, horizontalfov, 0f, relativeTo = Space.World);
         }
         if (Input.GetAxis("Mouse Y") != 0)
         {
