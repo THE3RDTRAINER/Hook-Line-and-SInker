@@ -11,7 +11,10 @@ public class FirstPersonControllerPhysics : MonoBehaviour
     [SerializeField] float jumpHeight=5f;
     [SerializeField] float speed = .10f;
 
+    [SerializeField] float sensitivity = .5f;
+
     [SerializeField] Transform PlayerTransform;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +64,9 @@ public class FirstPersonControllerPhysics : MonoBehaviour
     {
      
 
-        float horizontalfov = Input.GetAxis("Mouse X");
+        float horizontalfov = Input.GetAxis("Mouse X")*sensitivity;
         Space relativeTo;
-        float verticalfov = -(Input.GetAxis("Mouse Y"));
+        float verticalfov = -(Input.GetAxis("Mouse Y")*sensitivity);
 
 
         
