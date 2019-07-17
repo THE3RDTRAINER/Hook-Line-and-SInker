@@ -15,11 +15,12 @@ public class FirstPersonControllerPhysics : MonoBehaviour
 
     [SerializeField] Transform PlayerTransform;
 
+    [SerializeField] Rigidbody PlayerCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -54,7 +55,6 @@ public class FirstPersonControllerPhysics : MonoBehaviour
         //Jump 
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("I am jumping");
             player.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
             //player.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
         }
@@ -72,14 +72,16 @@ public class FirstPersonControllerPhysics : MonoBehaviour
         
         if (Input.GetAxis("Mouse X") != 0)
         {
-            FPCamera.Rotate(0f, horizontalfov, 0f, relativeTo = Space.World);
-            PlayerTransform.Rotate(0f, horizontalfov, 0f, relativeTo = Space.World);
+           //FPCamera.Rotate(0f, horizontalfov, 0f, relativeTo = Space.World);
+            PlayerTransform.Rotate(0f, horizontalfov, 0f, relativeTo = Space.Self);
         }
         if (Input.GetAxis("Mouse Y") != 0)
         {
-            FPCamera.Rotate(verticalfov, 0f, 0f, relativeTo = Space.World);
+            FPCamera.Rotate(verticalfov, 0f, 0f, relativeTo = Space.Self);
         }
-
+        //if ((Input.GetAxis("Mouse X") != 0)  | (Input.GetAxis("Mouse Y") != 0)){
+        //    FPCamera.Rotate(verticalfov, horizontalfov, 0f, Space.Self);
+        //}
       
     }
 
