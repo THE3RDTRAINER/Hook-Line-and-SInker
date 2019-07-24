@@ -750,6 +750,15 @@ MonoBehaviour:
   tmpComponent: {fileID: 771651709}
   ShootRope: 32
   amountToAddToRope: 0.15
+  hookshotDistance: 20
+  hookSpeed: 4
+  InitialHit:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  HookableObjects:
+    serializedVersion: 2
+    m_Bits: 768
+  hookedObject: {fileID: 0}
 --- !u!120 &963194230
 LineRenderer:
   m_ObjectHideFlags: 0
