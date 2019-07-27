@@ -6,16 +6,18 @@ using UnityEngine;
 //This is the updated contoller using physics instead of transfoms 
 public class FirstPersonControllerPhysics : MonoBehaviour
 {
+    [Header("Refrences")]
     [SerializeField] Rigidbody player;
     [SerializeField] Transform FPCamera;
-    [SerializeField] float jumpHeight=5f;
-    [SerializeField] float speed = .10f;
+    [SerializeField] Transform PlayerTransform;
+    [SerializeField] Rigidbody PlayerCamera;
 
+    [Header("Movement Variables")]
+    [SerializeField] float jumpHeight = 5f;
+    [SerializeField] float speed = .10f;
+    [Range(0f, 1f)]
     [SerializeField] float sensitivity = .5f;
 
-    [SerializeField] Transform PlayerTransform;
-
-    [SerializeField] Rigidbody PlayerCamera;
 
     // Start is called before the first frame update
     void Start()

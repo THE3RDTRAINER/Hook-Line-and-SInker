@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
     private bool isHooked;
     private Vector3 oldPosition;
     [SerializeField] private Transform hookedObject;
+
+    //Emma's Hookshot variables 
+    Rigidbody Connected;
+    GameObject hookedObj;
+    [SerializeField] Vector3 heldLocation = new Vector3(1, -1, 1);
     void Start()
     {
         lineRen = GetComponent<LineRenderer>();
@@ -78,8 +83,16 @@ public class PlayerController : MonoBehaviour
         //Hookshot controls
         if (Input.GetButtonUp("Fire2"))
         {
-            Debug.Log("Hookshot fired!");
-            Hookshot(Camera.position, Camera.forward);
+            if (isHooked == false)
+            {
+                Debug.Log("Hookshot fired!");
+                Hookshot(Camera.position, Camera.forward);
+            }
+            else
+            {
+                Drop();
+                Debug.Log("DROP IT!");
+            }
         }
         if(hookedObject != null && isHooked)
         {
@@ -90,7 +103,16 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, hookedObject.position, .05f);
+                if (hookedObject.transform.gameObject.layer==8)
+                {
+                    transform.position = Vector3.Lerp(transform.position, hookedObject.position, .05f);
+                }
+                if (hookedObject.transform.gameObject.layer == 9)
+                {
+                    hookedObj.transform.SetParent(transform.transform);
+                    Debug.Log("Parent of: " + hookedObj.transform.parent);
+                    Connected.transform.position = Vector3.Lerp(transform.position, (Camera.position + heldLocation), 1f);
+                }
             }
         }
 
@@ -165,18 +187,39 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit hit;
         if (Physics.Raycast(pos, dir, out hit, hookshotDistance, InitialHit, QueryTriggerInteraction.Collide)){
-            //Start the hookshot
+         //Start the hookshot
             if (hit.collider.gameObject.layer == 8)
             {
                 isHooked = true;
                 hookedObject = hit.collider.transform;
                 oldPosition = transform.position;
             }
+            if(hit.collider.gameObject.layer ==9)
+            {
+                isHooked = true;
+                hookedObject = hit.collider.transform;
+                hookedObj = hit.collider.gameObject;
+                Connected = hit.collider.attachedRigidbody;
+                Connected.useGravity = false;
+                Connected.isKinematic = true;
+                Connected.freezeRotation = true;
+
+
+            }
             //Plays the denied SFX
             else
             {
                 Debug.Log("Hookshot didn't hit anything!");
             }
-        }
+            }
+
+    }
+    //Drops held object
+    private void Drop()
+    {
+        Connected.useGravity = true;       
+        hookedObj.transform.parent = null;
+        Connected.isKinematic = false;
+        isHooked = false;
     }
 }
