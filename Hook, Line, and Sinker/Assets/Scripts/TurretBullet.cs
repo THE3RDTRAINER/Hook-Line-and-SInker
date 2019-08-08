@@ -7,6 +7,7 @@ public class TurretBullet : MonoBehaviour
 {
     [SerializeField] int playerLayer;
     [SerializeField] float forceToApplyToPlayer, speed;
+    [SerializeField] GameObject BulletHitPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class TurretBullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.collider.gameObject.name);
         if (collision.collider.gameObject.layer == playerLayer && collision.collider.gameObject.GetComponent<Rigidbody>())
         {
             collision.collider.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * forceToApplyToPlayer);
@@ -21,6 +23,7 @@ public class TurretBullet : MonoBehaviour
         }
         else
         {
+            Instantiate(BulletHitPrefab, collision.GetContact(0).point, Quaternion.Euler(-collision.GetContact(0).normal));
             Destroy(gameObject);
         }
     }
