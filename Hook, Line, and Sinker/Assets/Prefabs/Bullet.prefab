@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4998125004508380451}
   - component: {fileID: 4998125004508380460}
   - component: {fileID: 4998125004508380461}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,6 @@ MonoBehaviour:
   playerLayer: 10
   forceToApplyToPlayer: 500
   speed: 50
-  BulletHitPrefab: {fileID: 0}
 --- !u!54 &4998125004508380461
 Rigidbody:
   m_ObjectHideFlags: 0

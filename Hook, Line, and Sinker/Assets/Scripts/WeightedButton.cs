@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeightedButton : MonoBehaviour
 {
-    [SerializeField] GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +18,7 @@ public class WeightedButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        target.SendMessage("Weighted",true);
+        SendMessage("Weighted",true);
 
     }
 

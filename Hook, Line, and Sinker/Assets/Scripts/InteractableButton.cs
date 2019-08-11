@@ -5,7 +5,6 @@ using UnityEngine;
     //[RequireComponent(typeof(Rigidbody))]
 public class InteractableButton : MonoBehaviour
 {
-    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +22,7 @@ public class InteractableButton : MonoBehaviour
         Debug.Log("Colliding!");
         if(Input.GetButtonDown("Interact"))
         {
-            target.SendMessage("Interact");
+            SendMessage("Interact");
         }
     }
 
