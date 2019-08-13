@@ -5,6 +5,7 @@ using UnityEngine;
     //[RequireComponent(typeof(Rigidbody))]
 public class InteractableButton : MonoBehaviour
 {
+    [SerializeField] GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +23,12 @@ public class InteractableButton : MonoBehaviour
         Debug.Log("Colliding!");
         if(Input.GetButtonDown("Interact"))
         {
-            SendMessage("Interact");
+            target.SendMessage("Interact");
         }
     }
 
-    private void Interact()
-    {
-        Debug.Log("Button was pushed!");
-    }
+    //private void Interact()
+    //{
+    //    Debug.Log("Button was pushed!");
+    //}
 }

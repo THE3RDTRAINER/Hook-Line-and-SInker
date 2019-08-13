@@ -15,7 +15,7 @@ public class FirstPersonControllerPhysics : MonoBehaviour
     [Header("Movement Variables")]
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] float speed = .10f;
-    [Range(0f, 1f)]
+    [Range(0f, 3f)]
     [SerializeField] float sensitivity = .5f;
 
 
