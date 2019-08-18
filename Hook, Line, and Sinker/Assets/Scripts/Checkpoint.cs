@@ -21,12 +21,9 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.gameObject.layer == 10)
         {
-            //gameObject.GetComponent("PlayerRespawn");
             player.GetComponent<PlayerRespawn>().checkpointLocation = transform;
             Debug.Log("Found checkpoint " + gameObject.name);
-            //PlayerRespawn.checkpointLocation = transform.position;
-           // PlayerRespawn.SetCheckpoint(PlayerRespawn.checkpointLocation);
-
+            player.GetComponent<PlayerRespawn>().SetCheckpoint();
         }
     }
 }

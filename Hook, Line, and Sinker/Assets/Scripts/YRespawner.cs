@@ -19,14 +19,10 @@ public class YRespawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Something is being detected");
         if (other.gameObject.layer == 10)
         {
             player.GetComponent<PlayerRespawn>().Respawn();
             Debug.Log("Player has fallen and can't get up");
-
-            //player.PlayerRespawn.Respawn();
-  
         }
     }
 }
