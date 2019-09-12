@@ -8,10 +8,13 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private LineRenderer lineRen;
+    [Header("Grapple Options")]
+    [SerializeField] private float MaxDistance;
     [SerializeField] private GameObject connectedObject;
     [SerializeField] private LayerMask LayersToCollideWith;
     [SerializeField] private Transform Camera;
     [SerializeField] private SpringJoint sj;
+    //The Canvas Component
     [SerializeField] private GameObject tmpComponent;
 
     [Header("Controls")]
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody Connected;
     GameObject hookedObj;
     [SerializeField] Vector3 heldLocation = new Vector3(1, -1, 1);
+    [SerializeField] float stoppingDistance = 3.0f;
     void Start()
     {
         lineRen = GetComponent<LineRenderer>();
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("FIRE");
             if (connectedObject == null)
             {
-                Grapple(Camera.position, Camera.forward, 20f, LayersToCollideWith);
+                Grapple(Camera.position, Camera.forward, MaxDistance, LayersToCollideWith);
             }
             else
             {
@@ -72,13 +76,18 @@ public class PlayerController : MonoBehaviour
         }
 
         //Controls
-        if (Input.GetButton("ShortenRope"))
+        if(connectedObject != null)
         {
-            retractRope();
-        } else if (Input.GetButton("LongenRope"))
-        {
-            ExtendRope();
+            if (Input.GetButton("ShortenRope"))
+            {
+                retractRope();
+            }
+            else if (Input.GetButton("LongenRope"))
+            {
+                ExtendRope();
+            }
         }
+        
 
         //Hookshot controls
         if (Input.GetButtonUp("Fire2"))
@@ -96,8 +105,9 @@ public class PlayerController : MonoBehaviour
         }
         if(hookedObject != null && isHooked)
         {
-            if(Vector3.Distance(transform.position,hookedObject.position) < 1.0f)
+            if(Vector3.Distance(transform.position,hookedObject.position) < stoppingDistance)
             {
+                Debug.Log("I'M UNHOOKED");
                 hookedObject = null;
                 isHooked = false;
             }
@@ -119,7 +129,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Physics.Raycast(Camera.position, Camera.forward, 20f, LayersToCollideWith))
+        if (Physics.Raycast(Camera.position, Camera.forward, Mathf.Infinity, LayersToCollideWith))
         {
             tmpComponent.SetActive(true);
         }
@@ -168,6 +178,7 @@ public class PlayerController : MonoBehaviour
         sj.autoConfigureConnectedAnchor = false;
         sj.connectedAnchor = Vector3.zero;
         //sj.anchor = Vector3.zero;
+        Debug.Log("Added Joint");
     }
 
     private void OnDrawGizmos()
