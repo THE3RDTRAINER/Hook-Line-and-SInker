@@ -92,8 +92,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 3397159586289480790}
   FPCamera: {fileID: 2363135622866266086}
+  PlayerTransform: {fileID: 5263769156664095684}
+  PlayerCamera: {fileID: 3701607244965685332}
   jumpHeight: 5
   speed: 0.25
+  sensitivity: 0.5
 --- !u!1 &3701607244965685332
 GameObject:
   m_ObjectHideFlags: 0

@@ -1169,8 +1169,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1166869577895431505, guid: 79cf75f3c8db2494b8958b58fa849007,
+        type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 502385874}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79cf75f3c8db2494b8958b58fa849007, type: 3}
+--- !u!1 &502385874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5112549996188414927, guid: 79cf75f3c8db2494b8958b58fa849007,
+    type: 3}
+  m_PrefabInstance: {fileID: 502385873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &684915233
 PrefabInstance:
   m_ObjectHideFlags: 0
