@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WeightedButton : MonoBehaviour
 {
+    //TODO: Button must go down when stepped on or something is placed on it. (STATIC DYNAMIC)
+    //Use spring object for this.
+
     [SerializeField] GameObject target;
     //private Vector3 ogPosition;
     //[SerializeField] float sensitivity;
@@ -48,7 +51,7 @@ public class WeightedButton : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //isActivated = false;
-        SendMessage("Weighted", false);
+        target.SendMessage("Weighted", false);
     }
 
     private void Weighted(bool active)

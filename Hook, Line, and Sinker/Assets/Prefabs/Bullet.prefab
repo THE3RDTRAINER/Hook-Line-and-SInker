@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLayer: 10
   forceToApplyToPlayer: 500
-  speed: 50
+  speed: 500
   BulletHitPrefab: {fileID: 0}
 --- !u!54 &4998125004508380461
 Rigidbody:

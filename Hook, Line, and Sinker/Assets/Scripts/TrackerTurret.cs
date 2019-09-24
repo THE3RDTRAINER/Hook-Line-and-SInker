@@ -12,21 +12,37 @@ public class TrackerTurret : MonoBehaviour
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private bool detected=false;
     bool fire = false;
+
+
+    //Note: Start should never be a seperate function. It is called at the begining when we start the game or spawn the prefab.
     // Start is called before the first frame update
-    IEnumerator Start()
+    //IEnumerator Start()
+    //{
+    //    fire = true;
+    //    yield return new WaitForSeconds(timeBetweenShots);
+    //    StartCoroutine(Fire());
+    //}
+
+
+    IEnumerator StartFire()
     {
         fire = true;
         yield return new WaitForSeconds(timeBetweenShots);
         StartCoroutine(Fire());
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        //TODO: Only if the turret can see the player, shoot
+        if (detected)
+        {
+            transform.LookAt(player);
+        }
         if (detected == true && fire == false)
         {
-            StartCoroutine(Start());
-            transform.LookAt(player);
+            StartCoroutine(StartFire());
         }
     
     }
@@ -46,6 +62,7 @@ public class TrackerTurret : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        //TODO: Put a delay after the player leaves. Makes it better, way it's not instant.
         if (other.gameObject.layer == 10)
         {
             detected = false;

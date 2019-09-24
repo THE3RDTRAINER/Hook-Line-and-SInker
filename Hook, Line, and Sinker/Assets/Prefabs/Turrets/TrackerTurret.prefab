@@ -90,7 +90,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 364817e09aa9fa64a98db4a13cfaf091, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,8 +121,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.298379
-  m_Center: {x: 0, y: 0, z: 0.08006096}
+  m_Radius: 5.153515
+  m_Center: {x: 0, y: 0, z: 0.06615734}
 --- !u!114 &2113847930778956152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Firepoint: {fileID: 2113847929477324002}
   Bullet: {fileID: 4998125004508380461, guid: dc8f9e8f73bb1534eb4b34600c2453f1, type: 3}
-  player: {fileID: 5263769156664095684, guid: 82ec0afbc095e0543b7efce96bd40cb0, type: 3}
-  timeBetweenShots: 2
+  player: {fileID: 0}
+  timeBetweenShots: 0.5
   detected: 0

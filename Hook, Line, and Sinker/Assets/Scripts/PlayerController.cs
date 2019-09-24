@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Fire Grapple
         if (Input.GetButtonUp("Fire1") || Input.GetKeyUp(ShootRope))
         {
             Debug.Log("FIRE");
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("DROP IT!");
             }
         }
+        //hookshot stuff
         if(hookedObject != null && isHooked)
         {
             if(Vector3.Distance(transform.position,hookedObject.position) < stoppingDistance)

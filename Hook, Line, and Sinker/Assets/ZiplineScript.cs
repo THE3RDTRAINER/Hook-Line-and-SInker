@@ -30,8 +30,10 @@ public class ZiplineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If the zipline is activated
         if (isActive)
         {
+            //If the zipline is on
             if (RafterInst != null)
             {
                 t = ((Time.time - startTime) * speed) / Vector3.Distance(oldPosition, PositionB.position);
@@ -94,7 +96,7 @@ public class ZiplineScript : MonoBehaviour
     {
         return ((targetPosition.position - currentPosition.position) / Vector3.Distance(targetPosition.position, currentPosition.position));
     }
-
+    //Spawn Gameobject to drag object
     void SpawnRafter(GameObject PlayerObject)
     {
         RafterInst = Instantiate(RafterGameObject, PlayerObject.transform.position, transform.rotation);
@@ -107,6 +109,7 @@ public class ZiplineScript : MonoBehaviour
         startTime = Time.time;
         oldPosition = RafterInst.transform.position;
     }
+    //Dismount from Gameobject
     void DismountRafter()
     {
         Player.transform.parent = null;
