@@ -12,18 +12,11 @@ public class TrackerTurret : MonoBehaviour
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private bool detected=false;
     bool fire = false;
-
-
+    [Header("SphereCast")]
+    [SerializeField] LayerMask layMask;
+    [SerializeField] float radius;
     //Note: Start should never be a seperate function. It is called at the begining when we start the game or spawn the prefab.
     // Start is called before the first frame update
-    //IEnumerator Start()
-    //{
-    //    fire = true;
-    //    yield return new WaitForSeconds(timeBetweenShots);
-    //    StartCoroutine(Fire());
-    //}
-
-
     IEnumerator StartFire()
     {
         fire = true;
@@ -36,22 +29,34 @@ public class TrackerTurret : MonoBehaviour
     void Update()
     {
         //TODO: Only if the turret can see the player, shoot
-        if (detected)
+        if (detected==true)
         {
             transform.LookAt(player);
+            if (fire == false)
+            {
+                StartCoroutine(StartFire());
+            }
+
         }
-        if (detected == true && fire == false)
-        {
-            StartCoroutine(StartFire());
-        }
-    
+
     }
+
     IEnumerator Fire()
     {
         Rigidbody Projectile;
         Projectile = Instantiate(Bullet, Firepoint.position, Firepoint.rotation);
         yield return new WaitForSeconds(timeBetweenShots);
         fire = false;
+        Collider[] hit=Physics.OverlapSphere(transform.position, radius, layMask, QueryTriggerInteraction.UseGlobal);
+        if (hit.Length>0){
+            detected = true;
+            Debug.Log("Target in sight");
+        }
+        else
+        {
+            detected = false;
+            Debug.Log("Target Lost");
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -69,4 +74,6 @@ public class TrackerTurret : MonoBehaviour
         }
     }
 
+
+    //Dont use enum, at the end  of enum check for overlap sphere, if hit it wont stop if none stop 
 }
