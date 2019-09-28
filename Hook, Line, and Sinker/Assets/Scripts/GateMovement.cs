@@ -47,6 +47,8 @@ public class GateMovement : MonoBehaviour
     void Singleuse()
     {
         oneTime = false;
-        transform.position = Vector3.Lerp(transform.position, endPosition.position, movementRate);
+        Self.MovePosition(endPosition.position);
+        Self.isKinematic = true;
+        Self.useGravity = false;
     }
 }

@@ -9,8 +9,8 @@ public class WeightedButton : MonoBehaviour
 
     [SerializeField] GameObject target;
     //private Vector3 ogPosition;
-    //[SerializeField] float sensitivity;
-    //private bool isActivated = false;
+    //[SerializeField] float sensitivity; //Why do we need sensitivity? 
+    private bool isActivated = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,29 +30,35 @@ public class WeightedButton : MonoBehaviour
         //    target.SendMessage("Weighted", false);
         //    isActivated = t;
         //}
+
+
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    isActivated = true;
-    //}
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    isActivated = false;
-    //}
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        //isActivated = true;
+        isActivated = true;
+        GetComponent<SpringJoint>().maxDistance = .25f;
         target.SendMessage("Weighted", true);
-
     }
-
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        //isActivated = false;
+        isActivated = false;
+        GetComponent<SpringJoint>().maxDistance = 0f;
         target.SendMessage("Weighted", false);
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //isActivated = true;
+    //    target.SendMessage("Weighted", true);
+
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    //isActivated = false;
+    //    target.SendMessage("Weighted", false);
+    //}
 
     private void Weighted(bool active)
     {
