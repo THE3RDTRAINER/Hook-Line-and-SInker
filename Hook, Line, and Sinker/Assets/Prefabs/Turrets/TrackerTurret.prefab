@@ -140,3 +140,7 @@ MonoBehaviour:
   player: {fileID: 0}
   timeBetweenShots: 0.5
   detected: 0
+  layMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  radius: 5

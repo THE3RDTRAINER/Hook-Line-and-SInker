@@ -17,6 +17,11 @@ public class TrackerTurret : MonoBehaviour
     [SerializeField] float radius;
     //Note: Start should never be a seperate function. It is called at the begining when we start the game or spawn the prefab.
     // Start is called before the first frame update
+    private void Start()
+    {
+        GetComponent<SphereCollider>().radius = radius;
+    }
+
     IEnumerator StartFire()
     {
         fire = true;
@@ -47,6 +52,8 @@ public class TrackerTurret : MonoBehaviour
         Projectile = Instantiate(Bullet, Firepoint.position, Firepoint.rotation);
         yield return new WaitForSeconds(timeBetweenShots);
         fire = false;
+
+        //TODO: Optimization, 
         Collider[] hit=Physics.OverlapSphere(transform.position, radius, layMask, QueryTriggerInteraction.UseGlobal);
         if (hit.Length>0){
             detected = true;
@@ -71,6 +78,19 @@ public class TrackerTurret : MonoBehaviour
         if (other.gameObject.layer == 10)
         {
             detected = false;
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        if (detected)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, player.position);
+        }
+        else
+        {
+            Gizmos.color = new Color(225, 235, 0, .5f);
+            Gizmos.DrawSphere(transform.position, radius);
         }
     }
 
