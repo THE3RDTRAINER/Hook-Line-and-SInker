@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     //Hookshot Variables
     private bool isHooked;
     private Vector3 oldPosition;
+    private bool frozen = false;
+    [SerializeField] private GameObject TextIcon;
     [SerializeField] private Transform hookedObject;
 
     //Emma's Hookshot variables 
@@ -88,11 +90,18 @@ public class PlayerController : MonoBehaviour
                 ExtendRope();
             }
         }
-        
+        if (Input.GetButton("ShortenRope") && frozen)
+        {
+            Unfreeze();
+        }
 
         //Hookshot controls
         if (Input.GetButtonUp("Fire2"))
         {
+            if (frozen)
+            {
+                Unfreeze();
+            }
             if (isHooked == false)
             {
                 Debug.Log("Hookshot fired!");
@@ -112,6 +121,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("I'M UNHOOKED");
                 hookedObject = null;
                 isHooked = false;
+                Freeze();
             }
             else
             {
@@ -234,5 +244,17 @@ public class PlayerController : MonoBehaviour
         hookedObj.transform.parent = null;
         Connected.isKinematic = false;
         isHooked = false;
+    }
+    private void Freeze()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        frozen = true;
+        TextIcon.SetActive(true);
+    }
+    private void Unfreeze()
+    {
+        Rigidbody tempRigid = GetComponent<Rigidbody>();
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        frozen = false; TextIcon.SetActive(false);
     }
 }
