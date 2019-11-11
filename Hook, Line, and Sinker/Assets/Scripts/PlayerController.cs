@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        lineRen.SetPosition(0, Camera.position);
+        lineRen.SetPosition(0, Camera.position-new Vector3(0,0.5f,0));
         if (connectedObject != null)
         {
             lineRen.SetPosition(1, connectedObject.transform.position);
